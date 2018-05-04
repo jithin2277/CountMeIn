@@ -1,0 +1,23 @@
+{
+  "name": "countmein",
+  "version": "1.0.0",
+  "description": "Application to allow players to vote their availability for the next box-cricket session",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jithin Jayasankar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.2",
+    "grunt-contrib-less": "^1.4.1",
+    "grunt-contrib-watch": "^1.0.1",
+    "jit-grunt": "^0.10.0"
+  }
+}
