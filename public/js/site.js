@@ -56,6 +56,9 @@
                             app.isOn = true;
                         }
                     }
+                    else {
+                        app.isOn = false;
+                    }
 
                     var percentage = Math.round((app.playerList.length / maxAllowedPlayers) * 100);
                     app.progress = 'progress-' + percentage;

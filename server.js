@@ -1,4 +1,5 @@
 const maxAllowedPlayers = 20;
+const magicWordText = "aLohomorA!";
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs')
@@ -20,8 +21,8 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.post('/', function (req, res) {
-    res.render('index');
+app.get('/admin', function (req, res) {
+    res.render('admin');
 });
 
 io.on('connection', function (socket) {
@@ -55,6 +56,13 @@ io.on('connection', function (socket) {
         else {
             io.emit('bookingsfull', players);
         }
+    });
+
+    socket.on('resetBooking', function (value) {
+        if (value === magicWordText) {
+            players = new Array();
+            io.emit('playerList', players);
+        }        
     });
 });
 
