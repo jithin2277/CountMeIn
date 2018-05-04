@@ -8,7 +8,7 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var date = new Date();
-var logger = fs.createWriteStream('players' + date.getDay() + date.getMonth() + date.getFullYear() + '.txt', {
+var logger = fs.createWriteStream('players' + date.getDay() + date.getMonth() + date.getFullYear(), {
     flags: 'a'
 });
 var players = new Array();
