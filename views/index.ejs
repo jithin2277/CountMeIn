@@ -10,21 +10,26 @@
 
 <body>
     <div class="container" id="app" v-bind:class="{ on: isOn }">
-        <div v-if="isDisabled" class="info" style="display:none" v-bind:style="{ display: isDisabled }">
-            Votings are closed
+        <div v-if="isDisabled" class="votingOff" style="display:none" v-bind:style="{ display: isDisabled }">
+            <div v-if="!isTimerStarted" class="votingClosed" style="display:none" v-bind:style="{ display: !isTimerStarted }">
+                Votings are closed
+            </div>
+            <div v-else class="votingTimer" style="display:none" v-bind:style="{ display: isTimerStarted }">
+                Votings will open in {{ timer }}
+            </div>
         </div>
-        <div v-if="!isDisabled" style="display:none" v-bind:style="{ display: !isDisabled }">
+        <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
             <div v-if="!isRegistered" class="registerUser">
                 <div v-if="!isBookingFull">
                     <input v-model="playerName" v-on:keyup="submitName" placeholder="Full Name" autofocus>
                     <button v-on:click="registerUser" type="submit"></button>
                 </div>
                 <div v-else>
-                    You are late! <br/>
-                    Bookings are full. Better luck next time! :)
+                    You are late!
+                    <br/> Bookings are full. Better luck next time! :)
                 </div>
             </div>
-            <div v-if="isRegistered" class="registeredUser">
+            <div v-else class="registeredUser">
                 <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button>
                 <div class="pie-wrapper style-2" v-bind:class="[progress]">
                     <div class="pie">

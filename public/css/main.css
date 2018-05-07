@@ -1269,7 +1269,7 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #f5f5f5;
+  background-color: #2f2f2f;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -1295,6 +1295,9 @@ body {
   background-color: #fff;
   box-shadow: none;
   cursor: default;
+}
+.votingOff {
+  color: #f5f5f5;
 }
 .countMeIn {
   width: 185px;

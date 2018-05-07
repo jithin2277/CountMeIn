@@ -7,6 +7,11 @@
     <title>Count Me In - Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <style type="text/css">
+        .input-group {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -14,12 +19,18 @@
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <div class="input-group">
-                    <input type="password" v-model="magicWord" class="form-control" placeholder="Magic Word!">
+                    <input type="password" v-model="magicWord" class="form-control" placeholder="Magic Word to reset bookings!">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-secondary" v-on:click="resetBookings">Reset</button>
                     </div>
                 </div>
-                <h4 class="d-flex justify-content-between align-items-center mb-3"  style="margin-top: 20px;">
+                <div class="input-group">
+                    <input type="password" v-model="stopCode" class="form-control" placeholder="Code to stop bookings!">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info" v-on:click="stopBookings">Stop</button>
+                    </div>
+                </div>
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Players</span>
                     <span class="badge badge-secondary badge-pill">{{ playerList.length }}</span>
                 </h4>

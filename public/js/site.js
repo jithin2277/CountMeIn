@@ -29,8 +29,10 @@
             el: '#app',
             data: {
                 isOn: false,
-                isDisabled: false,
+                isDisabled: true,
                 isRegistered: false,
+                timer: '2:00',
+                isTimerStarted: false,
                 playerName: '',
                 playerList: [],
                 progress: 'progress-0',
@@ -46,13 +48,13 @@
 
                 socket.on('playerList', function (players) {
                     app.playerList = [];
-                    players.forEach(element => {
-                        app.playerList.push(element);
-                    });
+                    for (let i = 0; i < players.length; i++) {
+                        app.playerList.push(players[i]);
+                    }
 
                     if (app.playerList.length > 0) {
-                        var players = app.playerList.find(o => o === app.playerName);
-                        if (players !== undefined) {
+                        var players = $.inArray(app.playerName, app.playerList);
+                        if (players >= 0) {
                             app.isOn = true;
                         }
                     }
@@ -70,6 +72,23 @@
                 socket.on('bookingsfull', function (player) {
                     app.isBookingFull = true;
                     app.progress = 'progress-100';
+                });
+
+                socket.on('stop', function (player) {
+                    app.playerList = [];
+                    app.isDisabled = true;
+                    app.isTimerStarted = false;
+                });
+
+                socket.on('start', function (value) {
+                    app.playerList = [];
+                    app.isDisabled = false;
+                    app.isTimerStarted = false;
+                });
+
+                socket.on('startTimer', function (value) {
+                    app.isTimerStarted = true;
+                    app.timer = value;
                 });
             },
             methods: {
