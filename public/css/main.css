@@ -1394,3 +1394,11 @@ body {
   font-size: 7.6em;
   position: relative;
 }
+.votingTimer {
+  text-align: center;
+}
+.votingTimer span {
+  font-size: 4em;
+  display: block;
+  color: #00ccff;
+}

@@ -13,7 +13,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var date = new Date();
 var players = new Array();
-var timerDisplay = "";
+var timeOut = 60;
+var timerDisplay = "00:00";
 var logger = fs.createWriteStream('players' + date.getDay() + date.getMonth() + date.getFullYear() + '.log', {
     flags: 'a'
 });
@@ -28,6 +29,12 @@ app.get('/', function (req, res) {
 
 app.get('/admin', function (req, res) {
     res.render('admin');
+});
+
+app.get('/manage', function (req, res) {
+    io.emit('manageBookings', req.query.code);
+    
+    res.send("true");
 });
 
 io.on('connection', function (socket) {
@@ -79,7 +86,8 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('bookingAdmin', function (value) {
+    socket.on('manageBookings', function (value) {
+        console.log("asdfasdf");
         if (passwordHash.verify(value, startCodeHashed)) {
             io.emit('startTimer', timerDisplay);
             var startTimer = function (duration) {
@@ -111,7 +119,7 @@ io.on('connection', function (socket) {
 
                 var interval = setInterval(intervalFunction, 1000);                
             }
-            startTimer(60);
+            startTimer(timeOut);
         }
 
         if (passwordHash.verify(value, stopCodeHashed)) {

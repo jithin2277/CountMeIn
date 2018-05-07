@@ -8,7 +8,7 @@
 
         var code = getQueryStringValue("code");
         if(code) {
-            socket.emit('bookingAdmin', code);
+            socket.emit('manageBookings', code);
         }        
 
         var app = new Vue({
@@ -37,7 +37,7 @@
                     socket.emit('resetBooking', this.magicWord);
                 },
                 stopBookings: function () {
-                    socket.emit('bookingAdmin', this.stopCode);
+                    socket.emit('manageBookings', this.stopCode);
                 }
             }
         });

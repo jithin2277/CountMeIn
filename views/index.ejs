@@ -15,7 +15,8 @@
                 Votings are closed
             </div>
             <div v-else class="votingTimer" style="display:none" v-bind:style="{ display: isTimerStarted }">
-                Votings will open in {{ timer }}
+                Votings will open in 
+                <span>{{ timer }}</span>
             </div>
         </div>
         <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
