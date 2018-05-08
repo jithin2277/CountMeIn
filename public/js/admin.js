@@ -11,23 +11,35 @@
             data: {
                 playerList: [],
                 magicWord: "",
-                manageCode: ""
+                manageCode: "",
+                isVotingsEnabled: false,
+                isTimerStarted: false,
+                timerDisplay: "00:00"
             },
             created: function () {
                 socket.emit('getRecent', true);
 
                 socket.on('playerList', function (model) {
                     app.playerList = [];
-                    model.players.forEach(element => {
-                        app.playerList.push(element);
-                    });
+                    for (let i = 0; i < model.players.length; i++) {
+                        app.playerList.push(model.players[i]);
+                    }
+                    app.isVotingsEnabled = model.isVotingsEnabled;
+                    app.isTimerStarted = model.isTimerStarted
                 });
 
                 socket.on('stop', function (model) {
                     app.playerList = [];
-                    model.players.forEach(element => {
-                        app.playerList.push(element);
-                    });
+                    for (let i = 0; i < model.players.length; i++) {
+                        app.playerList.push(model.players[i]);
+                    }
+                    app.isVotingsEnabled = model.isVotingsEnabled;
+                    app.isTimerStarted = model.isTimerStarted                    
+                });
+
+                socket.on('startTimer', function (value) {
+                    app.isTimerStarted = true;
+                    app.timerDisplay = value;
                 });
             },
             methods: {
