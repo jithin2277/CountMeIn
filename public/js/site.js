@@ -46,10 +46,11 @@
                 }
                 socket.emit('getRecent', true);
 
-                socket.on('playerList', function (players) {
+                socket.on('playerList', function (model) {
                     app.playerList = [];
-                    for (let i = 0; i < players.length; i++) {
-                        app.playerList.push(players[i]);
+                    app.isDisabled = !model.isVotingsEnabled;
+                    for (let i = 0; i < model.players.length; i++) {
+                        app.playerList.push(model.players[i]);
                     }
 
                     if (app.playerList.length > 0) {
@@ -66,24 +67,25 @@
                     app.progress = 'progress-' + percentage;
                     if (percentage === 100) {
                         app.isBookingFull = true;
-                    }
+                    }                    
                 });
 
-                socket.on('bookingsfull', function (player) {
+                socket.on('bookingsfull', function (model) {
                     app.isBookingFull = true;
                     app.progress = 'progress-100';
                 });
 
-                socket.on('stop', function (player) {
+                socket.on('stop', function (model) {
                     app.playerList = [];
                     app.isDisabled = true;
                     app.isTimerStarted = false;
                 });
 
-                socket.on('start', function (value) {
+                socket.on('start', function (model) {
                     app.playerList = [];
                     app.isDisabled = false;
                     app.isTimerStarted = false;
+                    app.isOn = false;
                 });
 
                 socket.on('startTimer', function (value) {

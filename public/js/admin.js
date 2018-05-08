@@ -16,16 +16,16 @@
             created: function () {
                 socket.emit('getRecent', true);
 
-                socket.on('playerList', function (players) {
+                socket.on('playerList', function (model) {
                     app.playerList = [];
-                    players.forEach(element => {
+                    model.players.forEach(element => {
                         app.playerList.push(element);
                     });
                 });
 
-                socket.on('stop', function (players) {
+                socket.on('stop', function (model) {
                     app.playerList = [];
-                    players.forEach(element => {
+                    model.players.forEach(element => {
                         app.playerList.push(element);
                     });
                 });
