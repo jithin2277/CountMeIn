@@ -31,7 +31,7 @@
                 isOn: false,
                 isDisabled: true,
                 isRegistered: false,
-                timer: '2:00',
+                timer: '00:00',
                 isTimerStarted: false,
                 playerName: '',
                 playerList: [],
