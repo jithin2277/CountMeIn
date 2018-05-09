@@ -115,8 +115,7 @@ io.on('connection', function (socket) {
                 if (player === null || player === undefined) {
                     socket.nickname = playerName;
                     model.players.push(playerName);
-                    logger.write(playerName + '\r\n');
-                    console.log(playerName);
+                    logger.write(playerName + '\r\n');                    
                 }
 
                 if (percentage === 100) {

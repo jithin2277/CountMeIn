@@ -1269,7 +1269,7 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #2f2f2f;
+  background-color: #163042;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -1292,8 +1292,7 @@ body {
 }
 .container.on .countMeIn {
   background-image: url(/images/on.png);
-  background-color: #fff;
-  box-shadow: none;
+  box-shadow: inset 0px 2px 2px 1px #3a3a3a;
   cursor: default;
 }
 .votingOff {
@@ -1302,12 +1301,11 @@ body {
 .countMeIn {
   width: 185px;
   height: 185px;
-  border: 1px solid #e2e2e2;
-  background: #ebebeb;
+  border: none;
   border-radius: 50%;
   outline: none;
   box-sizing: border-box;
-  box-shadow: 0px 2px 6px 0px #545454;
+  box-shadow: 0px 2px 2px 1px #3a3a3a;
   -webkit-order: 0;
   -ms-order: 0;
   order: 0;
@@ -1321,9 +1319,10 @@ body {
   background-image: url(/images/off.png);
   background-repeat: no-repeat;
   background-position: center center;
-  transition: 0.06s all;
   position: relative;
   z-index: 2;
+  background-size: 100%;
+  transition: all 0.3s ease-in-out;
 }
 .countMeIn.disabled {
   background-image: url(/images/disabled.png);
