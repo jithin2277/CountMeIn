@@ -39,6 +39,7 @@
                 isBookingFull: false,
                 googleSignInParams: {
                     client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
+                    //client_id: 463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com
                 }
             },
             created: function () {
@@ -115,8 +116,6 @@
                     }
                 },
                 onSignInSuccess: function(googleUser) {
-                    // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-                    // See https://developers.google.com/identity/sign-in/web/reference#users
                     const profile = googleUser.getBasicProfile() // etc etc
                     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                     console.log('Name: ' + profile.getName());
