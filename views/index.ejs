@@ -10,43 +10,44 @@
 
 <body>
     <div class="container" id="app" v-bind:class="{ on: isOn }">
-        <div v-if="isDisabled" class="votingOff" style="display:none" v-bind:style="{ display: isDisabled }">
-            <div v-if="!isTimerStarted" class="votingClosed" style="display:none" v-bind:style="{ display: !isTimerStarted }">
-                Votings are closed
-            </div>
-            <div v-else class="votingTimer" style="display:none" v-bind:style="{ display: isTimerStarted }">
-                Votings will open in 
-                <span>{{ timer }}</span>
-            </div>
+        <div v-if="!isRegistered" class="registerUser">
+            <template>
+                <g-signin-button :params="googleSignInParams" @success="onSignInSuccess" @error="onSignInError">
+                    Sign in with Google
+                </g-signin-button>
+            </template>
         </div>
-        <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
-            <div v-if="!isRegistered" class="registerUser">
-                <div v-if="!isBookingFull">
-                    <input v-model="playerName" v-on:keyup="submitName" placeholder="Full Name" autofocus>
-                    <button v-on:click="registerUser" type="submit"></button>
+        <div v-else>
+            <div v-if="isDisabled" class="votingOff" style="display:none" v-bind:style="{ display: isDisabled }">
+                <div v-if="!isTimerStarted" class="votingClosed" style="display:none" v-bind:style="{ display: !isTimerStarted }">
+                    Votings are closed
                 </div>
-                <div v-else>
-                    You are late!
-                    <br/> Bookings are full. Better luck next time! :)
+                <div v-else class="votingTimer" style="display:none" v-bind:style="{ display: isTimerStarted }">
+                    Votings will open in
+                    <span>{{ timer }}</span>
                 </div>
             </div>
-            <div v-else class="registeredUser">
-                <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button>
-                <div class="pie-wrapper style-2" v-bind:class="[progress]">
-                    <div class="pie">
-                        <div class="left-side half-circle"></div>
-                        <div class="right-side half-circle"></div>
+            <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
+                <div class="registeredUser">
+                    <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button>
+                    <div class="pie-wrapper style-2" v-bind:class="[progress]">
+                        <div class="pie">
+                            <div class="left-side half-circle"></div>
+                            <div class="right-side half-circle"></div>
+                        </div>
+                        <div class="shadow"></div>
                     </div>
-                    <div class="shadow"></div>
                 </div>
             </div>
         </div>
     </div>
 </body>
 
+<script src="https://apis.google.com/js/api:client.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="/js/vue-google-signin-button.min.js"></script>
 <script src="/js/site.js"></script>
 
 </html>

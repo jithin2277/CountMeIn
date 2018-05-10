@@ -108,7 +108,7 @@ app.get('/manage', function (req, res) {
 
 io.on('connection', function (socket) {
     socket.on('iAmIn', function (playerName) {
-        if (model.isVotingsEnabled) {
+        if (model.isVotingsEnabled && playerName.length > 0) {
             var percentage = (model.players.length / maxAllowedPlayers) * 100;
             if (percentage <= 100) {
                 var player = model.players.find(o => o === playerName);

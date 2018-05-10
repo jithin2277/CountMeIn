@@ -63,6 +63,17 @@ body {
     }
 }
 
+.g-signin-button {
+    /* This is where you control how the button looks. Be creative! */
+    display: inline-block;
+    padding: 15px;
+    border-radius: 3px;
+    background-color: #3c82f7;
+    color: #fff;
+    box-shadow: 0 3px 0 #0f69ff;
+    cursor: pointer;
+}
+
 .votingOff {
     color: #f5f5f5;
 }
@@ -103,57 +114,6 @@ body {
         cursor: default; 
     }  
 }  
-
-.registerUser > div {
-    box-sizing: border-box;
-    height: 70px;
-    .flex-display();
-
-    input, button {
-        height: 100%;
-        border: 0;
-        outline: none;
-    }
-
-    input {
-        border-bottom-left-radius: 35px;
-        border-top-left-radius: 35px;        
-        background: #8bc6f9;
-        width: 80%;
-        padding: 0 30px;
-        color: white;
-        font-size: 20px;
-
-        &::-webkit-input-placeholder {
-            color: #f5f5f5 !important;
-        }
-             
-        &:-moz-placeholder { /* Firefox 18- */
-            color: #f5f5f5 !important;  
-        }
-             
-        &::-moz-placeholder {  /* Firefox 19+ */
-            color: #f5f5f5 !important;  
-        }
-             
-        &:-ms-input-placeholder {  
-            color: #f5f5f5 !important;  
-        }
-    }
-
-    button {
-        border-bottom-right-radius: 50%;
-        border-top-right-radius: 50%;
-        background-color: #607bff;
-        color: white;
-        width: 20%;
-        cursor: pointer;
-        background-image: url(/images/rightcaret.png);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 25px;
-    }
-}
 
 .playerList {
     margin-top: 10px;

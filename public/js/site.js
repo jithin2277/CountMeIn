@@ -36,7 +36,10 @@
                 playerName: '',
                 playerList: [],
                 progress: 'progress-0',
-                isBookingFull: false
+                isBookingFull: false,
+                googleSignInParams: {
+                    client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
+                }
             },
             created: function () {
                 var nameCookie = getCookie(cookieName);
@@ -67,7 +70,7 @@
                     app.progress = 'progress-' + percentage;
                     if (percentage === 100) {
                         app.isBookingFull = true;
-                    }                    
+                    }
                 });
 
                 socket.on('bookingsfull', function (model) {
@@ -110,6 +113,22 @@
                     if (e.keyCode === 13) {
                         this.registerUser();
                     }
+                },
+                onSignInSuccess: function(googleUser) {
+                    // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+                    // See https://developers.google.com/identity/sign-in/web/reference#users
+                    const profile = googleUser.getBasicProfile() // etc etc
+                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+                    this.isRegistered = true;
+                    this.playerName = profile.getName();
+                },
+                onSignInError: function(error) {
+                    // `error` contains any error occurred.
+                    console.log('OH NOS', error)
                 }
             }
         });
