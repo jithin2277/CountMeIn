@@ -10,12 +10,9 @@
 
 <body>
     <div class="container" id="app" v-bind:class="{ on: isOn }">
-        <div v-if="!isRegistered" class="registerUser">
-            <template>
-                <g-signin-button :params="googleSignInParams" @success="onSignInSuccess" @error="onSignInError">
-                    Sign in with Google
-                </g-signin-button>
-            </template>
+        <div v-if="!isRegistered" class="registerUser" style="display:none" v-bind:style="{ display: !isRegistered }">
+            <g-signin-button :params="googleSignInParams" @success="onSignInSuccess" @error="onSignInError">
+            </g-signin-button>
         </div>
         <div v-else>
             <div v-if="isDisabled" class="votingOff" style="display:none" v-bind:style="{ display: isDisabled }">

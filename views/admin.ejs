@@ -49,7 +49,8 @@
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-condensed" v-for="player in playerList">
                         <div>
-                            <h6 class="my-0">{{ player }}</h6>
+                            <h6 class="my-0">{{ player.Name }}</h6>
+                            <small class="text-muted">{{ player.Email }}</small>
                         </div>
                     </li>
                 </ul>

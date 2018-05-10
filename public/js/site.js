@@ -4,27 +4,6 @@
         var socket = io();
         var maxAllowedPlayers = 20;
 
-        var getCookie = function (name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        var setCookie = function (name, value) {
-            if (value) {
-                var expires = "";
-                var date = new Date();
-                date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-                document.cookie = name + "=" + value + expires + "; path=/";
-            }
-        }
-
         var app = new Vue({
             el: '#app',
             data: {
@@ -33,7 +12,7 @@
                 isRegistered: false,
                 timer: '00:00',
                 isTimerStarted: false,
-                playerName: '',
+                player: {},
                 playerList: [],
                 progress: 'progress-0',
                 isBookingFull: false,
@@ -43,13 +22,6 @@
                 }
             },
             created: function () {
-                var nameCookie = getCookie(cookieName);
-                if (nameCookie !== null) {
-                    this.isRegistered = true;
-                    this.playerName = nameCookie;
-                }
-                socket.emit('getRecent', true);
-
                 socket.on('playerList', function (model) {
                     app.playerList = [];
                     app.isDisabled = !model.isVotingsEnabled;
@@ -58,8 +30,14 @@
                     }
 
                     if (app.playerList.length > 0) {
-                        var players = $.inArray(app.playerName, app.playerList);
-                        if (players >= 0) {
+                        var playerEmails = [];
+                        $.map(app.playerList, function (val, i) {
+                            playerEmails.push(val.Email);
+                        });
+
+                        var o = $.inArray(app.player.Email, playerEmails);
+
+                        if (o >= 0) {
                             app.isOn = true;
                         }
                     }
@@ -101,12 +79,11 @@
                 countMeIn: function () {
                     if (!this.isDisabled && !this.isOn) {
                         this.isOn = true;
-                        socket.emit('iAmIn', this.playerName);
+                        socket.emit('iAmIn', this.player);
                     }
                 },
                 registerUser: function () {
                     if (this.playerName.length > 0) {
-                        setCookie(cookieName, this.playerName);
                         this.isRegistered = true;
                     }
                 },
@@ -115,18 +92,18 @@
                         this.registerUser();
                     }
                 },
-                onSignInSuccess: function(googleUser) {
-                    const profile = googleUser.getBasicProfile() // etc etc
-                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                    console.log('Name: ' + profile.getName());
-                    console.log('Image URL: ' + profile.getImageUrl());
-                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-                    this.isRegistered = true;
-                    this.playerName = profile.getName();
+                onSignInSuccess: function (googleUser) {
+                    const profile = googleUser.getBasicProfile();
+                    if (profile) {
+                        this.isRegistered = true;
+                        this.player.Id = profile.getId();
+                        this.player.Name = profile.getName();
+                        this.player.Email = profile.getEmail();
+                        
+                        socket.emit('getRecent', true);
+                    }
                 },
-                onSignInError: function(error) {
-                    // `error` contains any error occurred.
+                onSignInError: function (error) {
                     console.log('OH NOS', error)
                 }
             }

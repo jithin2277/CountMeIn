@@ -107,15 +107,20 @@ app.get('/manage', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    socket.on('iAmIn', function (playerName) {
-        if (model.isVotingsEnabled && playerName.length > 0) {
+    //io.emit('playerList', model);
+
+    socket.on('iAmIn', function (player) {
+        if (model.isVotingsEnabled && player) {
             var percentage = (model.players.length / maxAllowedPlayers) * 100;
             if (percentage <= 100) {
-                var player = model.players.find(o => o === playerName);
-                if (player === null || player === undefined) {
-                    socket.nickname = playerName;
-                    model.players.push(playerName);
-                    logger.write(playerName + '\r\n');                    
+                var playerEmails = [];
+                for (let i = 0; i < model.players.length; i++) {
+                    playerEmails.push(model.players[i].Email);
+                }
+                var playerEmail = playerEmails.find(o => o === player.Email);
+                if (playerEmail === null || playerEmail === undefined) {
+                    model.players.push(player);
+                    logger.write(player.Name + '\r\n');
                 }
 
                 if (percentage === 100) {
