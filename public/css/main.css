@@ -1307,12 +1307,10 @@ body {
   cursor: pointer;
   font-size: 1em;
 }
-.g-signin-button-container .load {
+.g-signin-button-container .lds-ring {
   display: none;
-  font-size: 2em;
-  color: #00edff;
 }
-.g-signin-button-container.loading .load {
+.g-signin-button-container.loading .lds-ring {
   display: inline-block;
 }
 .g-signin-button-container.loading .g-signin-button {
@@ -1366,6 +1364,31 @@ body {
 .registeredUser {
   position: relative;
 }
+.registeredUser .lds-ring {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 3;
+}
+.registeredUser .lds-ring div {
+  width: 100%;
+  height: 100%;
+}
+.registeredUser.loading .lds-ring {
+  display: inline-block;
+}
+.registeredUser .playerAdded {
+  position: absolute;
+  text-align: center;
+  top: -120px;
+  left: -20px;
+  color: #e6e6e6;
+  text-shadow: 2px 2px #6d6d6d;
+}
 .votingTimer {
   text-align: center;
 }
@@ -1373,4 +1396,38 @@ body {
   font-size: 4em;
   display: block;
   color: #00ccff;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  border: 6px solid #00ccff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #00ccff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

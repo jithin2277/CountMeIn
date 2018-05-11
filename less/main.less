@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:700);
-@import "flexbox.less"; 
-@import "radialprogress.less"; 
-
+@import "flexbox.less";
+@import "radialprogress.less";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -10,28 +9,96 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
 body {
@@ -55,13 +122,12 @@ body {
     .justify-content(center);
     .align-content(flex-start);
     .align-items(center);
-
     &.on .countMeIn {
         background-image: url(/images/on.png);
         box-shadow: inset 0px 2px 2px 1px #3a3a3a;
-        cursor: default;  
-        background-color: #32e88d;  
-        background-position: 51% 51%;    
+        cursor: default;
+        background-color: #32e88d;
+        background-position: 51% 51%;
     }
 }
 
@@ -76,18 +142,13 @@ body {
         cursor: pointer;
         font-size: 1em;
     }
-
-    .load {
+    .lds-ring {
         display: none;
-        font-size: 2em;
-        color: #00edff;
     }
-
     &.loading {
-        .load {
+        .lds-ring {
             display: inline-block;
         }
-
         .g-signin-button {
             display: none;
         }
@@ -117,23 +178,20 @@ body {
     z-index: 2;
     background-size: 60%;
     background-color: #58c5d3;
-
     &.disabled {
         background-image: url(/images/disabled.png);
         cursor: default;
     }
-
     &:focus {
         outline: none;
     }
-    
     &.bookingClosed {
         background-image: url(/images/closed.png) !important;
-        background-color: #fff; 
+        background-color: #fff;
         box-shadow: none;
-        cursor: default; 
-    }  
-}  
+        cursor: default;
+    }
+}
 
 .playerList {
     margin-top: 10px;
@@ -141,13 +199,80 @@ body {
 
 .registeredUser {
     position: relative;
+    .lds-ring {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        z-index: 3;
+        div {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &.loading {
+        .lds-ring {
+            display: inline-block;
+        }
+    }
+    .playerAdded {
+        position: absolute;
+        text-align: center;
+        top: -120px;
+        left: -20px;
+        color: #e6e6e6;
+        text-shadow: 2px 2px #6d6d6d;
+    }
 }
 
-.votingTimer { 
+.votingTimer {
     text-align: center;
     span {
         font-size: 4em;
-        display: block;        
+        display: block;
         color: #00ccff;
+    }
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    border: 6px solid #00ccff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #00ccff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

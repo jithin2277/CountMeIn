@@ -107,9 +107,9 @@ app.get('/manage', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    //io.emit('playerList', model);
+    io.emit('playerList', model);
 
-    socket.on('iAmIn', function (player) {
+    socket.on('iAmIn', function (player, fn) {
         if (model.isVotingsEnabled && player) {
             var percentage = (model.players.length / maxAllowedPlayers) * 100;
             if (percentage <= 100) {
@@ -120,15 +120,17 @@ io.on('connection', function (socket) {
                 var playerEmail = playerEmails.find(o => o === player.Email);
                 if (playerEmail === null || playerEmail === undefined) {
                     model.players.push(player);
+                    fn(true);
                     logger.write(player.Name + '\r\n');
-                }
 
-                if (percentage === 100) {
-                    io.emit('bookingsfull', model);
-                }
-                else {
-                    io.emit('playerList', model);
-                }
+                    percentage = (model.players.length / maxAllowedPlayers) * 100;
+                    if (percentage === 100) {
+                        io.emit('bookingsfull', model);
+                    }
+                    else {
+                        io.emit('playerList', model);
+                    }
+                }                
             }
             else {
                 io.emit('bookingsfull', model);

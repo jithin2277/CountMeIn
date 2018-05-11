@@ -1,6 +1,5 @@
 (function ($) {
     $(function () {
-        var cookieName = "NameCookie";
         var socket = io();
         var maxAllowedPlayers = 20;
 
@@ -8,7 +7,7 @@
             el: '#app',
             data: {
                 isOn: false,
-                isDisabled: true,
+                isDisabled: false,
                 isRegistered: false,
                 timer: '00:00',
                 isTimerStarted: false,
@@ -16,13 +15,18 @@
                 playerList: [],
                 progress: 'progress-0',
                 isBookingFull: false,
+                playerAdded: false,
+                playerLoading: false,
                 googleSignInParams: {
                     client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
-                    //client_id: 463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com
+                    //client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
                 }
             },
             created: function () {
+                socket.emit('getRecent', true);
+
                 socket.on('playerList', function (model) {
+                    app.playerLoading = false;
                     app.playerList = [];
                     app.isDisabled = !model.isVotingsEnabled;
                     for (let i = 0; i < model.players.length; i++) {
@@ -39,10 +43,12 @@
 
                         if (o >= 0) {
                             app.isOn = true;
+                            app.playerAdded = true;
                         }
                     }
                     else {
                         app.isOn = false;
+                        app.playerAdded = false;
                     }
 
                     var percentage = Math.round((app.playerList.length / maxAllowedPlayers) * 100);
@@ -79,7 +85,15 @@
                 countMeIn: function () {
                     if (!this.isDisabled && !this.isOn) {
                         this.isOn = true;
-                        socket.emit('iAmIn', this.player);
+                        this.playerLoading = true;
+                        this.playerAdded = false;
+
+                        socket.emit('iAmIn', this.player, function (ack) {
+                            if (ack) {
+                                this.playerAdded = true;
+                                this.playerLoading = false;
+                            }
+                        });
                     }
                 },
                 registerUser: function () {
@@ -99,7 +113,8 @@
                         this.player.Id = profile.getId();
                         this.player.Name = profile.getName();
                         this.player.Email = profile.getEmail();
-                        
+                        this.playerLoading = false;
+
                         socket.emit('getRecent', true);
                     }
                 },
