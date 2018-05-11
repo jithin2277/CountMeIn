@@ -18,8 +18,8 @@
                 playerAdded: false,
                 playerLoading: false,
                 googleSignInParams: {
-                    client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
-                    //client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
+                    //client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
+                    client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
                 }
             },
             created: function () {
@@ -42,8 +42,8 @@
                         var o = $.inArray(app.player.Email, playerEmails);
 
                         if (o >= 0) {
-                            app.isOn = true;
                             app.playerAdded = true;
+                            app.isOn = true;                            
                         }
                     }
                     else {
@@ -84,7 +84,6 @@
             methods: {
                 countMeIn: function () {
                     if (!this.isDisabled && !this.isOn) {
-                        this.isOn = true;
                         this.playerLoading = true;
                         this.playerAdded = false;
 
@@ -92,18 +91,9 @@
                             if (ack) {
                                 this.playerAdded = true;
                                 this.playerLoading = false;
+                                this.isOn = true;
                             }
                         });
-                    }
-                },
-                registerUser: function () {
-                    if (this.playerName.length > 0) {
-                        this.isRegistered = true;
-                    }
-                },
-                submitName: function (e) {
-                    if (e.keyCode === 13) {
-                        this.registerUser();
                     }
                 },
                 onSignInSuccess: function (googleUser) {
