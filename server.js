@@ -30,7 +30,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {
+        googleClientId: process.env.GOOGLE_CLIENT_ID
+    });
 });
 
 app.get('/admin', function (req, res) {
@@ -130,7 +132,7 @@ io.on('connection', function (socket) {
                     else {
                         io.emit('playerList', model);
                     }
-                }                
+                }
             }
             else {
                 io.emit('bookingsfull', model);

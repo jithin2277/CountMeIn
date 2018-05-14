@@ -19,7 +19,8 @@
                 playerLoading: false,
                 googleSignInParams: {
                     //client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
-                    client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
+                    //client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
+                    client_id: $('meta[name=googleClientId]').attr('content')
                 }
             },
             created: function () {
