@@ -9,7 +9,7 @@
                 isOn: false,
                 isDisabled: false,
                 isRegistered: false,
-                timer: '00:00',
+                timer: '00',
                 isTimerStarted: false,
                 player: {},
                 playerList: [],

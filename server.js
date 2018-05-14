@@ -13,7 +13,7 @@ const stopCodeHashed = "sha1$c1af9b62$1$d0ac887166aa1176027aeab75fb8f421dfa69ead
 const maxAllowedPlayers = 20;
 
 var date = new Date();
-var timeOut = 15;
+var timeOut = 30;
 var logger = fs.createWriteStream('players' + date.getDay() + date.getMonth() + date.getFullYear() + '.log', {
     flags: 'a'
 });
@@ -22,7 +22,7 @@ var model = {
     players: new Array(),
     isVotingsEnabled: false,
     isTimerStarted: false,
-    timerDisplay: "00:00"
+    timerDisplay: "00"
 };
 
 app.set('view engine', 'ejs');
@@ -54,10 +54,9 @@ app.get('/manage', function (req, res) {
                         minutes = parseInt(timer / 60, 10)
                         seconds = parseInt(timer % 60, 10);
 
-                        minutes = minutes < 10 ? "0" + minutes : minutes;
-                        seconds = seconds < 10 ? "0" + seconds : seconds;
+                        //seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                        model.timerDisplay = minutes + ":" + seconds;
+                        model.timerDisplay = seconds;
 
                         io.emit('startTimer', model.timerDisplay);
 
