@@ -5,11 +5,11 @@
 
         var app = new Vue({
             el: '#app',
-            data: {
+            data: { 
                 isOn: false,
                 isDisabled: false,
                 isRegistered: false,
-                timer: '00',
+                timer: '--',
                 isTimerStarted: false,
                 player: {},
                 playerList: [],
@@ -30,7 +30,7 @@
                     app.playerLoading = false;
                     app.playerList = [];
                     app.isDisabled = !model.isVotingsEnabled;
-                    for (let i = 0; i < model.players.length; i++) {
+                    for (var i = 0; i < model.players.length; i++) {
                         app.playerList.push(model.players[i]);
                     }
 
@@ -98,7 +98,7 @@
                     }
                 },
                 onSignInSuccess: function (googleUser) {
-                    const profile = googleUser.getBasicProfile();
+                    var profile = googleUser.getBasicProfile();
                     if (profile) {
                         this.isRegistered = true;
                         this.player.Id = profile.getId();

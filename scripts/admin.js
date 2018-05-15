@@ -21,7 +21,7 @@
 
                 socket.on('playerList', function (model) {
                     app.playerList = [];
-                    for (let i = 0; i < model.players.length; i++) {
+                    for (var i = 0; i < model.players.length; i++) {
                         app.playerList.push(model.players[i]);
                     }
                     app.isVotingsEnabled = model.isVotingsEnabled;
@@ -30,7 +30,7 @@
 
                 socket.on('stop', function (model) {
                     app.playerList = [];
-                    for (let i = 0; i < model.players.length; i++) {
+                    for (var i = 0; i < model.players.length; i++) {
                         app.playerList.push(model.players[i]);
                     }
                     app.isVotingsEnabled = model.isVotingsEnabled;

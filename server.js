@@ -22,11 +22,12 @@ var model = {
     players: new Array(),
     isVotingsEnabled: false,
     isTimerStarted: false,
-    timerDisplay: "00"
+    timerDisplay: "--"
 };
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(compression())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
