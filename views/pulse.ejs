@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Orbitron|Passion+One" rel="stylesheet">
+    <title>Pulse</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background: #262626;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pulse {
+            cursor: pointer;
+            width: 185px;
+            height: 185px;
+            background: #ffa96e;
+            border-radius: 50%;
+            animation: animate 3s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(90, 31, 17, 0.7);
+            background-image: -webkit-linear-gradient(top, #ffa96e, #884c1b);
+            text-transform: uppercase;
+            border: 3px solid #793c2d;
+
+            cursor: pointer;
+            width: 185px;
+            height: 185px;
+            background: #f7f7f7;
+            border-radius: 50%;
+            animation: animate 3s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(70, 69, 69, 0.7);
+            background-image: -webkit-linear-gradient(top, #f7f7f7, #5a5a5a);
+            text-transform: uppercase;
+            border: 3px solid #6d6d6d;
+
+            cursor: pointer;
+            width: 185px;
+            height: 185px;
+            background: #9cf96c;
+            border-radius: 50%;
+            animation: animate 3s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(27, 97, 46, 0.7);
+            background-image: -webkit-linear-gradient(top, #9cf96c, #548241);
+            text-transform: uppercase;
+            border: 3px solid #568c53;
+        }
+
+        .pulse:hover {
+            background-image: none;
+        }
+
+        .pulse div {
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Orbitron', sans-serif;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .pulse div span {
+            font-size: 95px;
+            display: block;
+            font-weight: 900;
+            line-height: 72px;
+            font-family: 'Passion One', cursive;
+            text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes animate {
+            0% {
+                box-shadow: 0 0 0 0 rgba(249, 146, 86, .7), 0 0 0 0 rgba(249, 146, 86, .7);
+                box-shadow: 0 0 0 0 rgba(202, 202, 202, .7), 0 0 0 0 rgba(202, 202, 202, .7);
+                box-shadow: 0 0 0 0 rgba(54, 204, 86, .7), 0 0 0 0 rgba(54, 204, 86, .7);
+            }
+            40% {
+                box-shadow: 0 0 0 50px rgba(249, 146, 86, 0), 0 0 0 0 rgba(249, 146, 86, .7);
+                box-shadow: 0 0 0 50px rgba(202, 202, 202, 0), 0 0 0 0 rgba(202, 202, 202, .7);
+                box-shadow: 0 0 0 50px rgba(54, 204, 86, 0), 0 0 0 0 rgba(54, 204, 86, .7);
+            }
+            80% {
+                box-shadow: 0 0 0 50px rgba(249, 146, 86, 0), 0 0 0 30px rgba(249, 146, 86, 0);
+                box-shadow: 0 0 0 50px rgba(202, 202, 202, 0), 0 0 0 30px rgba(202, 202, 202, 0);
+                box-shadow: 0 0 0 50px rgba(54, 204, 86, 0), 0 0 0 30px rgba(54, 204, 86, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(249, 146, 86, 0), 0 0 0 30px rgba(249, 146, 86, 0);
+                box-shadow: 0 0 0 0 rgba(202, 202, 202, 0), 0 0 0 30px rgba(202, 202, 202, 0);
+                box-shadow: 0 0 0 0 rgba(54, 204, 86, 0), 0 0 0 30px rgba(54, 204, 86, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <div class="pulse">
+            <div>Count
+                <br/>Me
+                <span>In</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/site.min.js"></script>
+
+</html>

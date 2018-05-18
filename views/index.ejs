@@ -7,7 +7,7 @@
     <meta name="googleClientId" content="<%- googleClientId %>">
     <title>Count Me In</title>
     <link rel="stylesheet" type="text/css" href="/css/main.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Orbitron|Passion+One" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,20 @@
             </div>
             <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
                 <div class="registeredUser" v-bind:class="{ loading: playerLoading }">
-                    <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button>
+                    <!-- <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button> -->
+                    <div class="pulse" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }">
+                        <div class="out">
+                            Count
+                            <br/>Me
+                            <span>In</span>
+                        </div>
+                        <div class="in">
+                            You
+                            <br/>are
+                            <span>In</span>
+                        </div>
+                        <div class="full"></div>
+                    </div>
                     <div class="pie-wrapper style-2" v-bind:class="[progress]">
                         <div class="pie">
                             <div class="left-side half-circle"></div>
@@ -49,7 +62,8 @@
 </body>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/site.min.js"></script>

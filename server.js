@@ -5,6 +5,7 @@ const passwordHash = require('password-hash');
 const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var compression = require('compression');
 
 var stopTimer = false;
 const magicWordHashed = "sha1$b790e13c$1$6ee8f7b035838bf3c6199c757e19e90e96be61b7";
@@ -27,7 +28,7 @@ var model = {
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(compression())
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
@@ -38,6 +39,10 @@ app.get('/', function (req, res) {
 
 app.get('/admin', function (req, res) {
     res.render('admin');
+});
+
+app.get('/pulse', function (req, res) {
+    res.render('pulse');
 });
 
 app.get('/manage', function (req, res) {
@@ -114,7 +119,7 @@ io.on('connection', function (socket) {
     socket.on('iAmIn', function (player, fn) {
         if (model.isVotingsEnabled && player) {
             var percentage = (model.players.length / maxAllowedPlayers) * 100;
-            if (percentage <= 100) {
+            if (percentage < 100) {
                 var playerEmails = [];
                 for (let i = 0; i < model.players.length; i++) {
                     playerEmails.push(model.players[i].Email);
