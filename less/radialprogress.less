@@ -8,12 +8,6 @@
     font-size: 10em;
 }
 
-.charts-container:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
 @bg: #34495e;
 @size: 1em;
 .pie-wrapper {
@@ -25,7 +19,6 @@
     left: -6px;
     z-index: 1;
     font-size: 12.25em;
-    opacity: .7;
     &:nth-child(3n+1) {
         clear: both;
     }
@@ -73,9 +66,12 @@
         .size(100%, 100%);
         border: @size / 10 solid #568c53;
         border-radius: 50%;
+        box-shadow: 1px 8px 20px 0px #1d1d1d;
+        transition: 1s all;
 
         .on & {
           border: @size / 10 solid #53838c;
+          box-shadow: none;
         }
     }
     &.style-2 {
@@ -386,31 +382,6 @@
     }
     &.progress-100 {
         .draw-progress(100, #e74c3c);
-    }
-}
-
-.pie-wrapper--solid {
-    border-radius: 50%;
-    overflow: hidden;
-    &:before {
-        border-radius: 0 100% 100% 0 / 50%;
-        content: '';
-        display: block;
-        height: 100%;
-        margin-left: 50%;
-        transform-origin: left;
-    }
-    .label {
-        background: transparent;
-    }
-    &.progress-65 {
-        .draw-progress--solid(65, #e67e22, @bg);
-    }
-    &.progress-25 {
-        .draw-progress--solid(25, #9b59b6, @bg);
-    }
-    &.progress-88 {
-        .draw-progress--solid(88, #3498db, @bg);
     }
 }
 

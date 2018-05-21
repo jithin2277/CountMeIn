@@ -84,7 +84,7 @@
             },
             methods: {
                 countMeIn: function () {
-                    if (!this.isDisabled && !this.isOn) {
+                    if (!this.isDisabled && !this.isOn && !this.isBookingFull) {
                         this.playerLoading = true;
                         this.playerAdded = false;
 

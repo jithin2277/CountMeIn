@@ -1,11 +1,6 @@
 .set-size {
   font-size: 10em;
 }
-.charts-container:after {
-  clear: both;
-  content: "";
-  display: table;
-}
 .pie-wrapper {
   width: 1em;
   height: 1em;
@@ -15,7 +10,6 @@
   left: -6px;
   z-index: 1;
   font-size: 12.25em;
-  opacity: .7;
 }
 .pie-wrapper:nth-child(3n+1) {
   clear: both;
@@ -65,9 +59,12 @@
   width: 100%;
   border: 0.1em solid #568c53;
   border-radius: 50%;
+  box-shadow: 1px 8px 20px 0px #1d1d1d;
+  transition: 1s all;
 }
 .on .pie-wrapper .shadow {
   border: 0.1em solid #53838c;
+  box-shadow: none;
 }
 .pie-wrapper.style-2 .label {
   background: none;
@@ -1126,42 +1123,6 @@
 .pie-wrapper.progress-100 .pie .left-side {
   transform: rotate(360deg);
 }
-.pie-wrapper--solid {
-  border-radius: 50%;
-  overflow: hidden;
-}
-.pie-wrapper--solid:before {
-  border-radius: 0 100% 100% 0%;
-  content: '';
-  display: block;
-  height: 100%;
-  margin-left: 50%;
-  transform-origin: left;
-}
-.pie-wrapper--solid .label {
-  background: transparent;
-}
-.pie-wrapper--solid.progress-65 {
-  background: linear-gradient(to right, #e67e22 50%, #34495e 50%);
-}
-.pie-wrapper--solid.progress-65:before {
-  background: #e67e22;
-  transform: rotate(126deg);
-}
-.pie-wrapper--solid.progress-25 {
-  background: linear-gradient(to right, #9b59b6 50%, #34495e 50%);
-}
-.pie-wrapper--solid.progress-25:before {
-  background: #34495e;
-  transform: rotate(-270deg);
-}
-.pie-wrapper--solid.progress-88 {
-  background: linear-gradient(to right, #3498db 50%, #34495e 50%);
-}
-.pie-wrapper--solid.progress-88:before {
-  background: #3498db;
-  transform: rotate(43.2deg);
-}
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -1260,10 +1221,11 @@ video {
   vertical-align: baseline;
 }
 body {
-  width: 100%;
   margin: 0 auto;
   font-family: 'Orbitron', sans-serif;
   background: #262626;
+  height: 100vh;
+  background: radial-gradient(circle at center, #676767 0%, #423e3e 50%, #292929 100%);
 }
 .container {
   position: absolute;
