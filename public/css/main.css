@@ -1336,6 +1336,13 @@ body {
   color: #e6e6e6;
   text-shadow: 2px 2px #6d6d6d;
 }
+.registeredUser.mouseDown .pie-wrapper .shadow {
+  box-shadow: none;
+  transition: 0.5s all;
+}
+.registeredUser.mouseDown .pulse {
+  animation: none;
+}
 .votingTimer {
   text-align: center;
 }
@@ -1380,7 +1387,6 @@ body {
   }
 }
 .pulse {
-  cursor: pointer;
   width: 185px;
   height: 185px;
   background: #9cf96c;
@@ -1395,7 +1401,7 @@ body {
   position: relative;
   z-index: 2;
 }
-.pulse div {
+.pulse > div {
   text-align: center;
   font-size: 20px;
   font-family: 'Orbitron', sans-serif;
@@ -1406,7 +1412,7 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-.pulse div span {
+.pulse > div span {
   font-size: 95px;
   display: block;
   font-weight: 900;
@@ -1418,7 +1424,13 @@ body {
   display: none;
 }
 .pulse .out {
-  display: initial;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .pulse .full {
   display: none;
@@ -1429,8 +1441,8 @@ body {
   height: 100%;
   border-radius: 50%;
   z-index: 100;
-  background: #525252;
-  opacity: 0.6;
+  background: #0e0e0e;
+  opacity: .1;
 }
 .pulse.bookingClosed {
   animation: none;
@@ -1469,6 +1481,309 @@ body {
 }
 .on .pulse .out {
   display: none;
+}
+.pulse.progress-100 {
+  animation-duration: 600ms;
+}
+.pulse.progress-99 {
+  animation-duration: 600ms;
+}
+.pulse.progress-98 {
+  animation-duration: 600ms;
+}
+.pulse.progress-97 {
+  animation-duration: 600ms;
+}
+.pulse.progress-96 {
+  animation-duration: 600ms;
+}
+.pulse.progress-95 {
+  animation-duration: 600ms;
+}
+.pulse.progress-94 {
+  animation-duration: 600ms;
+}
+.pulse.progress-93 {
+  animation-duration: 600ms;
+}
+.pulse.progress-92 {
+  animation-duration: 600ms;
+}
+.pulse.progress-91 {
+  animation-duration: 600ms;
+}
+.pulse.progress-90 {
+  animation-duration: 600ms;
+}
+.pulse.progress-89 {
+  animation-duration: 600ms;
+}
+.pulse.progress-88 {
+  animation-duration: 600ms;
+}
+.pulse.progress-87 {
+  animation-duration: 600ms;
+}
+.pulse.progress-86 {
+  animation-duration: 600ms;
+}
+.pulse.progress-85 {
+  animation-duration: 600ms;
+}
+.pulse.progress-84 {
+  animation-duration: 600ms;
+}
+.pulse.progress-83 {
+  animation-duration: 600ms;
+}
+.pulse.progress-82 {
+  animation-duration: 600ms;
+}
+.pulse.progress-81 {
+  animation-duration: 600ms;
+}
+.pulse.progress-80 {
+  animation-duration: 600ms;
+}
+.pulse.progress-79 {
+  animation-duration: 630ms;
+}
+.pulse.progress-78 {
+  animation-duration: 660ms;
+}
+.pulse.progress-77 {
+  animation-duration: 690ms;
+}
+.pulse.progress-76 {
+  animation-duration: 720ms;
+}
+.pulse.progress-75 {
+  animation-duration: 750ms;
+}
+.pulse.progress-74 {
+  animation-duration: 780ms;
+}
+.pulse.progress-73 {
+  animation-duration: 810ms;
+}
+.pulse.progress-72 {
+  animation-duration: 840ms;
+}
+.pulse.progress-71 {
+  animation-duration: 870ms;
+}
+.pulse.progress-70 {
+  animation-duration: 900ms;
+}
+.pulse.progress-69 {
+  animation-duration: 930ms;
+}
+.pulse.progress-68 {
+  animation-duration: 960ms;
+}
+.pulse.progress-67 {
+  animation-duration: 990ms;
+}
+.pulse.progress-66 {
+  animation-duration: 1020ms;
+}
+.pulse.progress-65 {
+  animation-duration: 1050ms;
+}
+.pulse.progress-64 {
+  animation-duration: 1080ms;
+}
+.pulse.progress-63 {
+  animation-duration: 1110ms;
+}
+.pulse.progress-62 {
+  animation-duration: 1140ms;
+}
+.pulse.progress-61 {
+  animation-duration: 1170ms;
+}
+.pulse.progress-60 {
+  animation-duration: 1200ms;
+}
+.pulse.progress-59 {
+  animation-duration: 1230ms;
+}
+.pulse.progress-58 {
+  animation-duration: 1260ms;
+}
+.pulse.progress-57 {
+  animation-duration: 1290ms;
+}
+.pulse.progress-56 {
+  animation-duration: 1320ms;
+}
+.pulse.progress-55 {
+  animation-duration: 1350ms;
+}
+.pulse.progress-54 {
+  animation-duration: 1380ms;
+}
+.pulse.progress-53 {
+  animation-duration: 1410ms;
+}
+.pulse.progress-52 {
+  animation-duration: 1440ms;
+}
+.pulse.progress-51 {
+  animation-duration: 1470ms;
+}
+.pulse.progress-50 {
+  animation-duration: 1500ms;
+}
+.pulse.progress-49 {
+  animation-duration: 1530ms;
+}
+.pulse.progress-48 {
+  animation-duration: 1560ms;
+}
+.pulse.progress-47 {
+  animation-duration: 1590ms;
+}
+.pulse.progress-46 {
+  animation-duration: 1620ms;
+}
+.pulse.progress-45 {
+  animation-duration: 1650ms;
+}
+.pulse.progress-44 {
+  animation-duration: 1680ms;
+}
+.pulse.progress-43 {
+  animation-duration: 1710ms;
+}
+.pulse.progress-42 {
+  animation-duration: 1740ms;
+}
+.pulse.progress-41 {
+  animation-duration: 1770ms;
+}
+.pulse.progress-40 {
+  animation-duration: 1800ms;
+}
+.pulse.progress-39 {
+  animation-duration: 1830ms;
+}
+.pulse.progress-38 {
+  animation-duration: 1860ms;
+}
+.pulse.progress-37 {
+  animation-duration: 1890ms;
+}
+.pulse.progress-36 {
+  animation-duration: 1920ms;
+}
+.pulse.progress-35 {
+  animation-duration: 1950ms;
+}
+.pulse.progress-34 {
+  animation-duration: 1980ms;
+}
+.pulse.progress-33 {
+  animation-duration: 2010ms;
+}
+.pulse.progress-32 {
+  animation-duration: 2040ms;
+}
+.pulse.progress-31 {
+  animation-duration: 2070ms;
+}
+.pulse.progress-30 {
+  animation-duration: 2100ms;
+}
+.pulse.progress-29 {
+  animation-duration: 2130ms;
+}
+.pulse.progress-28 {
+  animation-duration: 2160ms;
+}
+.pulse.progress-27 {
+  animation-duration: 2190ms;
+}
+.pulse.progress-26 {
+  animation-duration: 2220ms;
+}
+.pulse.progress-25 {
+  animation-duration: 2250ms;
+}
+.pulse.progress-24 {
+  animation-duration: 2280ms;
+}
+.pulse.progress-23 {
+  animation-duration: 2310ms;
+}
+.pulse.progress-22 {
+  animation-duration: 2340ms;
+}
+.pulse.progress-21 {
+  animation-duration: 2370ms;
+}
+.pulse.progress-20 {
+  animation-duration: 2400ms;
+}
+.pulse.progress-19 {
+  animation-duration: 2430ms;
+}
+.pulse.progress-18 {
+  animation-duration: 2460ms;
+}
+.pulse.progress-17 {
+  animation-duration: 2490ms;
+}
+.pulse.progress-16 {
+  animation-duration: 2520ms;
+}
+.pulse.progress-15 {
+  animation-duration: 2550ms;
+}
+.pulse.progress-14 {
+  animation-duration: 2580ms;
+}
+.pulse.progress-13 {
+  animation-duration: 2610ms;
+}
+.pulse.progress-12 {
+  animation-duration: 2640ms;
+}
+.pulse.progress-11 {
+  animation-duration: 2670ms;
+}
+.pulse.progress-10 {
+  animation-duration: 2700ms;
+}
+.pulse.progress-9 {
+  animation-duration: 2730ms;
+}
+.pulse.progress-8 {
+  animation-duration: 2760ms;
+}
+.pulse.progress-7 {
+  animation-duration: 2790ms;
+}
+.pulse.progress-6 {
+  animation-duration: 2820ms;
+}
+.pulse.progress-5 {
+  animation-duration: 2850ms;
+}
+.pulse.progress-4 {
+  animation-duration: 2880ms;
+}
+.pulse.progress-3 {
+  animation-duration: 2910ms;
+}
+.pulse.progress-2 {
+  animation-duration: 2940ms;
+}
+.pulse.progress-1 {
+  animation-duration: 2970ms;
+}
+.pulse.progress-0 {
+  animation-duration: 3000ms;
 }
 @keyframes animate {
   0% {

@@ -27,14 +27,14 @@
                 </div>
             </div>
             <div v-else style="display:none" class="votingOn" v-bind:style="{ display: !isDisabled }">
-                <div class="registeredUser" v-bind:class="{ loading: playerLoading }">
+                <div class="registeredUser" v-bind:class="{ loading: playerLoading,  mouseDown: isMouseDown }">
                     <!-- <button class="countMeIn" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }"></button> -->
-                    <div class="pulse" v-on:click="countMeIn" v-bind:class="{ bookingClosed: isBookingFull }">
-                        <div class="out">
-                            Count<br/>Me<span>In</span>
+                    <div class="pulse" v-bind:class="[{ bookingClosed: isBookingFull }, progress]">
+                        <div class="out" v-on:click="countMeIn" v-on:mousedown="mouseDown" v-on:mouseup="mouseUp">
+                            <div>Count<br/>Me<span>In</span></div>
                         </div>
                         <div class="in">
-                            You<br/>are<span>In</span>
+                            <div>You<br/>are<span>In</span></div>
                         </div>
                         <div class="full"></div>
                     </div>

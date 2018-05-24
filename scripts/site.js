@@ -5,7 +5,7 @@
 
         var app = new Vue({
             el: '#app',
-            data: { 
+            data: {
                 isOn: false,
                 isDisabled: false,
                 isRegistered: false,
@@ -17,6 +17,7 @@
                 isBookingFull: false,
                 playerAdded: false,
                 playerLoading: false,
+                isMouseDown: false,
                 googleSignInParams: {
                     //client_id: '174879153500-i096vnit21kgt34j0bhk25n9a1btud1f.apps.googleusercontent.com'
                     //client_id: '463475695040-9aji250pcq6nuqoj52pb59cc3bjlqp1o.apps.googleusercontent.com'
@@ -44,7 +45,7 @@
 
                         if (o >= 0) {
                             app.playerAdded = true;
-                            app.isOn = true;                            
+                            app.isOn = true;
                         }
                     }
                     else {
@@ -85,16 +86,16 @@
             methods: {
                 countMeIn: function () {
                     if (!this.isDisabled && !this.isOn && !this.isBookingFull) {
-                        this.playerLoading = true;
-                        this.playerAdded = false;
+                        //this.playerLoading = true;
+                        //this.playerAdded = false;
 
-                        socket.emit('iAmIn', this.player, function (ack) {
-                            if (ack) {
-                                this.playerAdded = true;
-                                this.playerLoading = false;
-                                this.isOn = true;
-                            }
-                        });
+                        // socket.emit('iAmIn', this.player, function (ack) {
+                        //     if (ack) {
+                        //         this.playerAdded = true; 
+                        //         this.playerLoading = false;
+                        //         this.isOn = true;
+                        //     }
+                        // });
                     }
                 },
                 onSignInSuccess: function (googleUser) {
@@ -111,8 +112,20 @@
                 },
                 onSignInError: function (error) {
                     console.log('OH NOS', error)
+                },
+                mouseDown: function() {
+                    this.isMouseDown = true;
+                },
+                mouseUp: function() {
+                    this.isMouseDown = false;
                 }
             }
+        });
+
+        $(".out").mouseup(function () {
+            $(this).parent().parent().removeClass("mouseDown");
+        }).mousedown(function () {
+            $(this).parent().parent().addClass("mouseDown");
         });
     });
 })(jQuery);
