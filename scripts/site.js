@@ -86,16 +86,16 @@
             methods: {
                 countMeIn: function () {
                     if (!this.isDisabled && !this.isOn && !this.isBookingFull) {
-                        //this.playerLoading = true;
-                        //this.playerAdded = false;
+                        this.playerLoading = true;
+                        this.playerAdded = false;
 
-                        // socket.emit('iAmIn', this.player, function (ack) {
-                        //     if (ack) {
-                        //         this.playerAdded = true; 
-                        //         this.playerLoading = false;
-                        //         this.isOn = true;
-                        //     }
-                        // });
+                        socket.emit('iAmIn', this.player, function (ack) {
+                            if (ack) {
+                                this.playerAdded = true; 
+                                this.playerLoading = false;
+                                this.isOn = true;
+                            }
+                        });
                     }
                 },
                 onSignInSuccess: function (googleUser) {
